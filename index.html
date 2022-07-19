@@ -1,0 +1,79 @@
+<html>
+<head>
+<link rel="icon" type="image/x-icon" href="/ModelTexture/logo.jpg">
+<title>Model Viewer</title>
+<h1> Centaur Digital</h1>
+<script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+<style>
+model-viewer{
+height: 100%;
+width: 100%;
+}
+.diffuse {
+  padding: 15px 25px;
+  cursor: pointer;
+  outline: none;
+  color: #fff;
+  background-color: #04AA6D;
+  border: none;
+  border-radius: 15px;
+  box-shadow: 0 9px #999;
+}
+
+.diffuse:hover {background-color: #3e8e41}
+
+.diffuse:active {
+  background-color: #3e8e41;
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
+}
+</style>
+</head>
+<body>
+<model-viewer id="helmet" camera-controls src="Model/DamagedHelmet.glb" ar ar-modes="webxr scene-viewer quick-look" alt="A 3D model of a helmet" enable-pan environment-image="HDR/hans.hdr">
+
+
+  <div class="controls">
+    <div>
+      <p>Texture</p>
+      <div id="diffuse">
+	  
+        <button value="Texture/Default_albedo.jpg" style="background-image:url(Texture/Helmet.jpg); width : 250px; height : 250px; cursor: pointer; "></button>
+		<button value="Texture/camera_tripod_BaseColor.png" style="background-image:url(Texture/Helmet03.jpg); width : 250px; height : 250px; cursor: pointer;"></button>
+		<button value="Texture/camera_camera_BaseColor.png" style="background-image:url(Texture/Helmet02.jpg); width : 250px; height : 250px; cursor: pointer;"></button>
+      </div>
+	</div>
+
+	
+</model-viewer>
+<script type="module">
+const modelViewerTexture1 = document.querySelector("model-viewer#helmet");
+
+modelViewerTexture1.addEventListener("load", () => 
+{
+
+  const material = modelViewerTexture1.model.materials[0];
+
+  const createAndApplyTexture = async (channel, event) => {
+    const texture = await modelViewerTexture1.createTexture(event.target.value);
+    if (channel.includes('base') || channel.includes('metallic')) {
+      material.pbrMetallicRoughness[channel].setTexture(texture);
+    } else {
+      material[channel].setTexture(texture);
+    }
+ 
+  }
+  
+  document.querySelector('#diffuse').addEventListener('click', (event) => {
+    createAndApplyTexture('baseColorTexture', event);
+  });
+   document.querySelector('#metallicRoughness').addEventListener('click', (event) => {
+    createAndApplyTexture('metallicRoughnessTexture', event);
+  });
+
+ });
+
+
+</script>
+</body>
+</html>
