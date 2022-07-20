@@ -6,27 +6,19 @@
 <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
 <style>
 model-viewer{
-height: 100%;
+height: 90%;
 width: 100%;
 }
-.diffuse {
-  padding: 15px 25px;
-  cursor: pointer;
-  outline: none;
-  color: #fff;
-  background-color: #04AA6D;
-  border: none;
-  border-radius: 15px;
-  box-shadow: 0 9px #999;
+.controls
+{
+position: absolute;
+left: 2000px;
+top: 0px;
+ width: 400px;
+  height: 500px;
+
 }
 
-.diffuse:hover {background-color: #3e8e41}
-
-.diffuse:active {
-  background-color: #3e8e41;
-  box-shadow: 0 5px #666;
-  transform: translateY(4px);
-}
 </style>
 </head>
 <body>
@@ -35,12 +27,11 @@ width: 100%;
 
   <div class="controls">
     <div>
-      <p>Texture</p>
+      <p style="font-size:50px;">Texture Variant</p>
       <div id="diffuse">
-	  
-        <button value="Texture/Default_albedo.jpg" style="background-image:url(Texture/Helmet.jpg); width : 250px; height : 250px; cursor: pointer; "></button>
-		<button value="Texture/camera_tripod_BaseColor.png" style="background-image:url(Texture/Helmet03.jpg); width : 250px; height : 250px; cursor: pointer;"></button>
-		<button value="Texture/camera_camera_BaseColor.png" style="background-image:url(Texture/Helmet02.jpg); width : 250px; height : 250px; cursor: pointer;"></button>
+	    <button value="Texture/Default_albedo.jpg" style="background-image:url(Texture/Helmet.jpg); width : 150px; height : 150px; cursor: pointer; padding: 0; margin: 0; border: 0; background-position: center; background-size: cover; "></button>
+		<button value="Texture/camera_tripod_BaseColor.png" style="background-image:url(Texture/Helmet03.jpg); width : 150px; height : 150px; cursor: pointer;  padding: 0; margin: 0; border: 0; background-position: center; background-size: cover; "></button>
+		<button value="Texture/camera_camera_BaseColor.png" style="background-image:url(Texture/Helmet02.jpg); width : 150px; height : 150px; cursor: pointer;  padding: 0; margin: 0; border: 0; background-position: center; background-size: cover;"></button>
       </div>
 	</div>
 
